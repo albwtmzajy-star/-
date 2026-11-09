@@ -1,0 +1,22 @@
+{
+  "name": "sada-iraq",
+  "version": "3.2",
+  "private": true,
+  "description": "صدى العراق — Railway Node.js service",
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm run preflight && node tests/mock-provider-audit.js && node tests/provider-immediate-status-audit.js && node tests/r12-provider-add-status-sort.js && node tests/r13-category-pins-position-audit.js && node tests/r13-railway-lifecycle-audit.js && node tests/site-order-count-audit.js && node tests/release66-ui-audit.js && node tests/startup-cache-audit.js && node tests/startup-boot-watchdog-r11-audit.js && node tests/catalog-admin-maintenance-audit.js && node tests/consolidated-admin-performance-refund-audit.js && node tests/full-requirements-audit.js && node tests/mobile-admin-ux-audit.js && node tests/admin-r6-usability-audit.js && node tests/admin-r7-regression-audit.js && node tests/category-scroll-runtime-audit.js && node tests/customer-service-order-runtime-audit.js && node tests/provider-catalog-bulk-import-audit.js && node tests/r8-complete-regression-audit.js && node tests/r10-admin-sort-add-performance-audit.js && node tests/r16-consolidated-requirements-audit.js && node tests/provider-secret-persistence-audit.js",
+    "build": "npm run preflight",
+    "release:bump": "node scripts/bump-release.js",
+    "prestart": "node --check server.js",
+    "preflight": "node --check server.js && node -e \"const fs=require('node:fs'); for(const f of ['server.js','index.html','package.json','config.json']) if(!fs.existsSync(f)) throw new Error('Missing required root file: '+f); const p=JSON.parse(fs.readFileSync('package.json','utf8')); const c=JSON.parse(fs.readFileSync('config.json','utf8')); const s=fs.readFileSync('server.js','utf8'); if(String(p.version).split('.').slice(0,2).join('.')!==String(c.version)) throw new Error('package/config version mismatch'); if(String(p.buildId)!==String(c.buildId)||!s.includes(p.buildId)) throw new Error('release buildId mismatch'); console.log('PASS: deploy preflight checks.');\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "buildId": "SADA-3.2-R17-PROVIDER-SECRET-ISOLATION-20261102",
+  "dependencies": {
+    "google-auth-library": "^11.2.0",
+    "firebase-admin": "^14.5.0"
+  }
+}
