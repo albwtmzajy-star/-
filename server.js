@@ -46,7 +46,7 @@ function purgeCatalogServiceSnapshots(){
 purgeCatalogServiceSnapshots();
 const APP_NAME = 'صدى العراق';
 const APP_VERSION = '3.2';
-const BUILD_ID = 'SADA-3.2-R18.2-RAILPACK-BUILD-FIX-20261111';
+const BUILD_ID = 'SADA-3.2-R18.3-ADMIN-SETTINGS-SNOW-NAV-20261111';
 // Keep the owner's admin identity available after packaging, but store only a scrypt hash
 // in the project. Railway variables can still explicitly override this packaged credential.
 function loadBundledAdminAuth(){
@@ -7943,9 +7943,10 @@ async function routeAPI(req,res,urlObj){
   }
   if(p==='/api/settings' && req.method==='GET'){
     const cfg=readJSON('settings.json',{});const waUrl=normalizeWhatsAppUrl(cfg.waUrl||cfg.waNum||'https://wa.me/9647762267959');
-    let snow=cfg.snow&&typeof cfg.snow==='object'?cfg.snow:{enabled:false,speed:0.75,size:2.5};
+    let snow=cfg.snow&&typeof cfg.snow==='object'?cfg.snow:{enabled:true,speed:0.72,size:2.35};
+    if(snow.enabled===false&&!snow.updatedAt&&!snow.updatedBy)snow={...snow,enabled:true,speed:Number(snow.speed)||0.72,size:Number(snow.size)||2.35};
     if(SITE_SNOW_CONFIG_CACHE.value&&Date.now()-SITE_SNOW_CONFIG_CACHE.at<30000)snow=SITE_SNOW_CONFIG_CACHE.value;
-    else try{const remote=await firebaseGetJson('config/siteEffects/snow',3500);if(remote&&typeof remote==='object'&&!Array.isArray(remote)){snow={enabled:remote.enabled===true,speed:Math.max(.3,Math.min(1.8,Number(remote.speed)||.75)),size:Math.max(1,Math.min(6,Number(remote.size)||2.5))};SITE_SNOW_CONFIG_CACHE={at:Date.now(),value:snow};}}
+    else try{const remote=await firebaseGetJson('config/siteEffects/snow',3500);if(remote&&typeof remote==='object'&&!Array.isArray(remote)){const explicitChoice=!!(remote.updatedAt||remote.updatedBy);snow={enabled:explicitChoice?remote.enabled===true:true,speed:Math.max(.3,Math.min(1.8,Number(remote.speed)||.72)),size:Math.max(1,Math.min(6,Number(remote.size)||2.35))};SITE_SNOW_CONFIG_CACHE={at:Date.now(),value:snow};}}
     catch(e){/* Read-only public settings may use the last verified local cache when Firebase is unavailable. */}
     return json(res,200,{ok:true,settings:{waUrl,waNum:normalizeWhatsAppNumber(waUrl),snow}});
   }
@@ -7954,7 +7955,7 @@ async function routeAPI(req,res,urlObj){
     const b=await bodyJSON(req,128*1024),cfg=readJSON('settings.json',{});
     if(b.waUrl!==undefined)cfg.waUrl=normalizeWhatsAppUrl(b.waUrl);else if(b.waNum!==undefined)cfg.waUrl=normalizeWhatsAppUrl(b.waNum);
     cfg.waNum=normalizeWhatsAppNumber(cfg.waUrl||'');
-    let snow=cfg.snow&&typeof cfg.snow==='object'?cfg.snow:{enabled:false,speed:.75,size:2.5};
+    let snow=cfg.snow&&typeof cfg.snow==='object'?cfg.snow:{enabled:true,speed:.72,size:2.35};
     if(b.snow!==undefined){
       if(!b.snow||typeof b.snow!=='object'||Array.isArray(b.snow)||typeof b.snow.enabled!=='boolean')return json(res,422,{ok:false,error:'إعداد الثلج غير صالح'});
       const speed=Number(b.snow.speed),size=Number(b.snow.size);
