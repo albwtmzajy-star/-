@@ -5,7 +5,7 @@
   "description": "صدى العراق — Railway Node.js service",
   "scripts": {
     "start": "node server.js",
-    "test": "npm run build && node tests/mock-provider-audit.js && node tests/provider-immediate-status-audit.js && node tests/r12-provider-add-status-sort.js && node tests/r13-category-pins-position-audit.js && node tests/r13-railway-lifecycle-audit.js && node tests/site-order-count-audit.js && node tests/release66-ui-audit.js && node tests/startup-cache-audit.js && node tests/startup-boot-watchdog-r11-audit.js && node tests/catalog-admin-maintenance-audit.js && node tests/consolidated-admin-performance-refund-audit.js && node tests/full-requirements-audit.js && node tests/mobile-admin-ux-audit.js && node tests/admin-r6-usability-audit.js && node tests/admin-r7-regression-audit.js && node tests/category-scroll-runtime-audit.js && node tests/customer-service-order-runtime-audit.js && node tests/provider-catalog-bulk-import-audit.js && node tests/r8-complete-regression-audit.js && node tests/r10-admin-sort-add-performance-audit.js && node tests/r16-consolidated-requirements-audit.js && node tests/provider-secret-persistence-audit.js && node tests/r18-comprehensive-reliability-audit.js && node tests/r183-settings-snow-navigation-audit.js",
+    "test": "npm run build && node tests/mock-provider-audit.js && node tests/provider-immediate-status-audit.js && node tests/r12-provider-add-status-sort.js && node tests/r13-category-pins-position-audit.js && node tests/r13-railway-lifecycle-audit.js && node tests/site-order-count-audit.js && node tests/release66-ui-audit.js && node tests/startup-cache-audit.js && node tests/startup-boot-watchdog-r11-audit.js && node tests/catalog-admin-maintenance-audit.js && node tests/consolidated-admin-performance-refund-audit.js && node tests/full-requirements-audit.js && node tests/mobile-admin-ux-audit.js && node tests/admin-r6-usability-audit.js && node tests/admin-r7-regression-audit.js && node tests/category-scroll-runtime-audit.js && node tests/customer-service-order-runtime-audit.js && node tests/provider-catalog-bulk-import-audit.js && node tests/r8-complete-regression-audit.js && node tests/r10-admin-sort-add-performance-audit.js && node tests/r16-consolidated-requirements-audit.js && node tests/provider-secret-persistence-audit.js && node tests/r18-comprehensive-reliability-audit.js && node tests/r183-settings-snow-navigation-audit.js && node tests/r184-runtime-ui-audit.js",
     "build": "npm run preflight",
     "release:bump": "node scripts/bump-release.js",
     "prestart": "node --check server.js",
@@ -14,7 +14,7 @@
   "engines": {
     "node": ">=22"
   },
-  "buildId": "SADA-3.2-R18.3-ADMIN-SETTINGS-SNOW-NAV-20261111",
+  "buildId": "SADA-3.2-R18.4-ADMIN-UI-SNOW-RUNTIME-20261111",
   "dependencies": {
     "google-auth-library": "^11.2.0",
     "firebase-admin": "^14.5.0"
