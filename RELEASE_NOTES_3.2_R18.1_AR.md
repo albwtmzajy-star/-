@@ -1,6 +1,6 @@
 # صدى العراق 3.2 — R18.1 Railway Compatibility Patch
 
-**Build ID:** `SADA-3.2-R18.1-RAILPACK-COMPAT-20261111`
+**Build ID:** `SADA-3.2-R18.2-RAILPACK-BUILD-FIX-20261111`
 
 هذه نسخة تصحيحية مبنية على R18. تحتفظ بإصلاحات R18 وميزاته، وتصحح إعداد بناء Railway القديم، وتضيف فحصاً يمنع تسليم إعداد غير مدعوم.
 
